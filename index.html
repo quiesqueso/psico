@@ -25,26 +25,59 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body {font-family:'Quicksand',sans-serif;background:var(--color-fondo);color:var(--color-texto);line-height:1.6;scroll-behavior:smooth;}
 
-/* Header */
-header {position:relative;height:35vh;min-height:300px;overflow:hidden;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;}
-header::before {content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(248,200,216,0.6), rgba(248,200,216,0.2));z-index:1;}
-header img.bg-parallax {position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform 0.2s ease-out;}
-header .content {position:relative;z-index:2;max-width:800px;padding:0 1rem;}
-header h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;margin-bottom:.6rem;text-shadow:0 4px 12px rgba(0,0,0,0.4);}
-header p{font-size:1.2rem;margin-bottom:1rem;text-shadow:0 3px 8px rgba(0,0,0,0.3);}
-header .boton{background:var(--color-boton);padding:.7rem 1.6rem;border-radius:50px;color:#fff;text-decoration:none;font-weight:500;transition:all 0.3s ease, transform 0.3s ease;}
-header .boton:hover{background:var(--color-acento);transform: translateY(-3px) scale(1.05);}
+/* Header compacto con parallax */
+header{
+  position:relative;
+  height:50vh;
+  min-height:350px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+  overflow:hidden;
+}
+header::before{
+  content:"";
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(to bottom, rgba(248,200,216,0.6), rgba(248,200,216,0.2));
+  z-index:1;
+}
+header img.bg-parallax{
+  position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:translateY(0);transition:transform 0.2s ease-out;
+}
+header .content{position:relative;z-index:2;max-width:800px;padding:0 1rem;}
+header h1{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;
+  font-weight:700;
+  margin-bottom:.6rem;
+  text-shadow:0 0 20px rgba(255,255,255,0.5);
+  transition:text-shadow 0.5s ease;
+}
+header p{
+  font-size:1.4rem;
+  margin-bottom:1.5rem;
+  text-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+header .boton{
+  background:var(--color-boton);padding:.7rem 1.6rem;border-radius:50px;color:#fff;text-decoration:none;font-weight:500;transition: all 0.3s ease, transform 0.3s ease;
+}
+header .boton:hover{
+  background:var(--color-acento);
+  transform: translateY(-3px) scale(1.05);
+}
 
 /* Nav */
-nav {background:var(--color-primario);padding:.8rem;text-align:center;position:sticky;top:0;z-index:50;}
-nav a{margin:0 .8rem;color:var(--color-texto);text-decoration:none;font-weight:500;transition:color 0.3s ease, transform 0.3s ease;}
+nav{background:var(--color-primario);padding:.8rem;text-align:center;position:sticky;top:0;z-index:50;}
+nav a{margin:0 .8rem;color:var(--color-texto);text-decoration:none;font-weight:500;transition: color 0.3s ease, transform 0.3s ease;}
 nav a:hover{color:var(--color-acento);transform:scale(1.05);}
 
 /* Container */
 .container{max-width:1100px;margin:2rem auto;padding:0 1rem}
 
 /* Sections */
-section{margin-bottom:2rem;padding:1.8rem;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);}
+section{margin-bottom:2rem;padding:1.8rem;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);transition: transform 0.4s ease, box-shadow 0.4s ease;}
 section h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1rem;text-align:center;}
 
 /* Grids */
@@ -55,7 +88,7 @@ section h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1
 @media(max-width:600px){.tratamientos,.talleres{grid-template-columns:1fr;}}
 
 /* Items */
-.item {background:var(--color-gris-claro);border-radius:12px;padding:1rem;text-align:center;cursor:pointer;transition: transform 0.3s ease, box-shadow 0.4s ease, filter 0.3s ease;width:100%;max-width:220px;opacity:1;transform:translateY(0) scale(1);}
+.item{background:var(--color-gris-claro);border-radius:12px;padding:1rem;text-align:center;cursor:pointer;transition: transform 0.3s ease, box-shadow 0.4s ease, filter 0.3s ease;width:100%;max-width:220px;opacity:1;transform:translateY(0) scale(1);}
 .item:hover{transform:translateY(-10px) scale(1.08) rotate(-1deg);box-shadow:0 14px 28px rgba(244,166,177,0.3),0 0 30px rgba(244,166,177,0.2);filter:brightness(1.05);}
 .item img.icon{width:60px;height:60px;object-fit:contain;margin-bottom:.5rem;animation:floatIcon 3s ease-in-out infinite alternate;transition:transform 0.3s ease,filter 0.3s ease;}
 .item img.icon:hover{transform:scale(1.25) rotate(-5deg);filter:drop-shadow(0 0 6px rgba(244,166,177,0.7));}
@@ -72,6 +105,14 @@ section h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1
 .modal-contenido img{width:100%;height:auto;border-radius:8px;margin-bottom:1rem;}
 .cerrar{position:absolute;right:12px;top:8px;font-size:1.6rem;cursor:pointer;transition:color 0.2s ease;}
 .cerrar:hover{color:var(--color-acento);}
+
+/* Formulario contacto */
+form input, form textarea{width:100%;padding:.8rem;margin-bottom:.9rem;border:1px solid #d1d1d1;border-radius:8px;transition:border 0.3s ease;}
+form input:focus, form textarea:focus{border-color: var(--color-acento);outline:none;}
+form button{background:var(--color-boton);color:#fff;padding:.75rem 1.25rem;border:none;border-radius:50px;cursor:pointer;transition: transform 0.2s ease, background 0.3s ease;}
+form button:hover{background:var(--color-acento);transform: scale(1.05);}
+
+footer{background:var(--color-primario);text-align:center;padding:1rem;margin-top:1rem;color:var(--color-texto);}
 </style>
 </head>
 <body>
@@ -132,6 +173,7 @@ section h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1
     <button type="submit">Enviar</button>
   </form>
 </section>
+
 </div>
 
 <footer>
@@ -143,41 +185,46 @@ section h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1
 <div id="modal-pareja" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Terapia de Pareja</h2><img src="imagenes/terapia_pareja.png" alt="Terapia de Pareja"><p>Apoyo profesional para mejorar la comunicación y fortalecer la relación.</p></div></div>
 <div id="modal-familiar" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Asesoramiento Familiar</h2><img src="imagenes/asesoramiento_familiar.png" alt="Asesoramiento Familiar"><p>Herramientas para resolver conflictos y mejorar la convivencia familiar.</p></div></div>
 <div id="modal-mindfulness" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Mindfulness</h2><img src="imagenes/mindfulness.png" alt="Mindfulness"><p>Técnicas de atención plena para reducir el estrés y mejorar tu bienestar.</p></div></div>
-<!-- Añade los demás modales aquí con los mismos IDs que en data-id -->
+
+<div id="modal-timidez" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Supera la Timidez</h2><img src="imagenes/timidez.png" alt="Supera la Timidez"><p>Taller para mejorar la confianza personal y superar la timidez.</p></div></div>
+<div id="modal-pareja-taller" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Mejora tu relación de pareja</h2><img src="imagenes/pareja.png" alt="Mejora tu relación de pareja"><p>Taller para fortalecer la comunicación y el vínculo en pareja.</p></div></div>
+<div id="modal-ruptura" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Supera una ruptura</h2><img src="imagenes/ruptura.png" alt="Supera una ruptura"><p>Aprende a gestionar las emociones tras una separación.</p></div></div>
+<div id="modal-ansiedad" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Aprende a gestionar la ansiedad</h2><img src="imagenes/ansiedad.png" alt="Aprende a gestionar la ansiedad"><p>Técnicas para reducir la ansiedad y recuperar el control emocional.</p></div></div>
+<div id="modal-rallo" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Pienso, luego me rallo</h2><img src="imagenes/rallo.png" alt="Pienso, luego me rallo"><p>Aprende a identificar y gestionar pensamientos obsesivos.</p></div></div>
+<div id="modal-valorat" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Valora-T</h2><img src="imagenes/valorat.png" alt="Valora-T"><p>Taller para potenciar la autoestima y autoconocimiento.</p></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
 AOS.init({duration:800, offset:120, once:false, mirror:true});
 
-// Pop-ups con delegación de eventos
+// Pop-ups
 document.querySelectorAll('.item').forEach(item=>{
-  item.addEventListener('click',()=> {
-    const id = item.dataset.id;
-    const modal = document.getElementById(id);
+  item.addEventListener('click',()=>{
+    const id=item.dataset.id;
+    const modal=document.getElementById(id);
     if(modal){modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';}
   });
 });
-
 document.querySelectorAll('.cerrar').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    const modal = btn.closest('.modal');
-    modal.setAttribute('aria-hidden','true'); 
-    document.body.style.overflow='';
+    const modal=btn.closest('.modal');
+    modal.setAttribute('aria-hidden','true'); document.body.style.overflow='';
   });
 });
-
-// Cerrar con Escape
-window.addEventListener('keydown',e=>{
+window.addEventListener('keydown', e=>{
   if(e.key==='Escape'){
-    const open = document.querySelector('.modal[aria-hidden="false"]');
-    if(open){open.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+    const open=document.querySelector('.modal[aria-hidden="false"]');
+    if(open){open.setAttribute('aria-hidden','true'); document.body.style.overflow='';}
   }
 });
 
-// Header parallax
-window.addEventListener('scroll', ()=>{
-  const bg = document.querySelector('header img.bg-parallax');
-  if(bg){bg.style.transform=`translateY(${window.scrollY*0.3}px)`;}
+// Parallax avanzado header
+window.addEventListener('scroll',()=>{
+  const bg=document.querySelector('header img.bg-parallax');
+  if(bg){
+    const scroll=window.scrollY;
+    bg.style.transform=`translateY(${scroll*0.25}px) scale(${1+scroll*0.0007})`;
+  }
 });
 </script>
 
