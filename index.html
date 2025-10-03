@@ -1,137 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Inma Psicóloga</title>
 
-<!-- Tipografías elegantes -->
+<!-- Tipografías -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
 :root {
   --color-fondo: #ffffff;
-  --color-primario: #f8c8d8;  
-  --color-acento: #e6a1b0;    
+  --color-primario: #f8c8d8;
+  --color-acento: #e6a1b0;
   --color-texto: #333333;
   --color-boton: #f4a6b1;
   --color-gris-claro: #fdf5f7;
 }
+*{box-sizing:border-box;margin:0;padding:0}
+body {
+  font-family:'Quicksand',sans-serif;
+  background:var(--color-fondo);
+  color:var(--color-texto);
+  line-height:1.6;
+  scroll-behavior:smooth;
+}
 
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: 'Quicksand', sans-serif; background-color: var(--color-fondo); color: var(--color-texto); line-height:1.6; scroll-behavior: smooth; }
-
+/* Header */
 header {
-  background: linear-gradient(rgba(248,200,216,0.5), rgba(248,200,216,0.5)),
-    url('https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg') center/cover no-repeat;
-  height: 40vh;
-  display:flex; justify-content:center; align-items:center; text-align:center; color: var(--color-fondo);
-  position: relative;
-  overflow: hidden;
+  background:linear-gradient(rgba(248,200,216,0.5), rgba(248,200,216,0.5)),
+    url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+  height:40vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+  padding:0 1rem;
 }
-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; margin-bottom:1rem; }
-header p { font-size:1.2rem; margin-bottom:1.5rem; }
-header .boton {
-  background-color: var(--color-boton);
-  padding: 0.7rem 2rem;
+header h1{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;margin-bottom:.6rem}
+header p{font-size:1.05rem;margin-bottom:1rem}
+header .boton{
+  background:var(--color-boton);
+  padding:.7rem 1.6rem;
   border-radius:50px;
+  color:#fff;
   text-decoration:none;
-  color: var(--color-fondo);
-  font-weight:500;
-  transition:0.3s;
 }
-header .boton:hover { background-color: var(--color-acento); }
+header .boton:hover{background:var(--color-acento)}
 
 nav {
-  background-color: var(--color-primario);
+  background:var(--color-primario);
+  padding:.8rem;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+nav a{margin:0 .8rem;color:var(--color-texto);text-decoration:none;font-weight:500}
+nav a:hover{color:var(--color-acento)}
+
+.container{max-width:1100px;margin:2rem auto;padding:0 1rem}
+section{margin-bottom:2rem;padding:1.8rem;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+section h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1rem;text-align:center}
+
+/* Grids */
+.tratamientos,.talleres {
+  display:grid;
+  gap:1rem;
+}
+.tratamientos { grid-template-columns: repeat(4,1fr); }
+.talleres { grid-template-columns: repeat(6,1fr); }
+
+.item {
+  background:var(--color-gris-claro);
+  border-radius:12px;
   padding:1rem;
   text-align:center;
-  position: sticky;
-  top:0;
-  z-index: 50;
-}
-nav a { margin:0 1rem; color: var(--color-texto); text-decoration:none; font-weight:500; transition:0.3s; }
-nav a:hover { color: var(--color-acento); }
-
-.container { width: 80%; margin: 2rem auto; }
-
-section { margin-bottom:2rem; padding:2rem; background-color: var(--color-fondo); border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-section h2 { font-family: 'Playfair Display', serif; font-size:2rem; margin-bottom:1rem; }
-
-.tratamientos, .talleres {
-  display:flex;
-  flex-wrap:wrap;
-  gap:1rem;
-  justify-content:space-around;
-}
-.item {
-  flex:1 1 220px;
-  background-color: var(--color-gris-claro);
-  border-radius:12px;
-  padding:1.5rem 1rem;
-  text-align:center;
   cursor:pointer;
-  transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s;
-  opacity:0;
+  transition:.3s;
 }
-.item.show { opacity:1; }
-.item:hover { transform: translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.1); }
-.item img { width:60px; height:60px; margin-bottom:0.5rem; }
+.item:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,.08); }
+.item img.icon { width:60px; height:60px; object-fit:contain; margin-bottom:.5rem }
 
-/* Modal estilos */
+/* Modal */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 100;
-  left:0; top:0;
+  display:none;
+  position:fixed;
+  top:0; left:0;
   width:100%; height:100%;
-  overflow:auto;
-  background-color: rgba(0,0,0,0.5);
-  animation: fadeIn 0.3s;
+  background:rgba(0,0,0,.5);
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:1rem;
 }
+.modal[aria-hidden="false"] { display:flex }
 .modal-contenido {
-  background-color: #fff;
-  margin: 8% auto;
-  padding: 2rem;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 500px;
-  position: relative;
-  animation: slideDown 0.3s;
+  background:#fff;
+  border-radius:10px;
+  padding:1.6rem;
+  max-width:600px;
+  width:100%;
+  position:relative;
+}
+.modal-contenido img {
+  width:100%; height:auto;
+  border-radius:8px;
+  margin-bottom:1rem;
 }
 .cerrar {
-  position: absolute;
-  top:10px;
-  right:15px;
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  color:#333;
+  position:absolute;
+  right:12px; top:8px;
+  font-size:1.6rem;
+  cursor:pointer;
 }
 
-form input, form textarea { width:100%; padding:0.8rem; margin-bottom:1rem; border:1px solid #ccc; border-radius:8px; }
-form button { background-color: var(--color-boton); color: var(--color-fondo); padding:0.8rem 1.5rem; border-radius:50px; border:none; font-weight:500; cursor:pointer; transition:0.3s; }
-form button:hover { background-color: var(--color-acento); }
+/* Contacto */
+form input, form textarea {
+  width:100%; padding:.8rem; margin-bottom:.9rem;
+  border:1px solid #d1d1d1; border-radius:8px;
+}
+form button {
+  background:var(--color-boton); color:#fff;
+  padding:.75rem 1.25rem;
+  border:none; border-radius:50px;
+  cursor:pointer;
+}
+form button:hover{background:var(--color-acento)}
 
-footer { background-color: var(--color-primario); color: var(--color-texto); text-align:center; padding:1rem; }
+footer {
+  background:var(--color-primario);
+  text-align:center;
+  padding:1rem;
+  margin-top:1rem;
+  color:var(--color-texto);
+}
 
+/* Responsive */
+@media(max-width:900px){
+  .tratamientos{grid-template-columns:repeat(2,1fr)}
+  .talleres{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:600px){
-  header h1 { font-size:2rem; }
-  .tratamientos, .talleres { flex-direction:column; align-items:center; }
+  .tratamientos,.talleres{grid-template-columns:1fr}
 }
-
-/* Animaciones */
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes slideDown { from{transform:translateY(-20px)} to{transform:translateY(0)} }
 </style>
 </head>
 <body>
 
-<header>
+<header data-aos="fade-down">
   <div>
-    <h1>Inma Psicóloga</h1>
-    <p>Tu bienestar emocional es nuestra prioridad</p>
-    <a href="#contacto" class="boton">Solicitar cita</a>
+    <h1 data-aos="fade-up">Inma Psicóloga</h1>
+    <p data-aos="fade-up" data-aos-delay="150">Tu bienestar emocional es nuestra prioridad</p>
+    <a href="#contacto" class="boton" data-aos="fade-up" data-aos-delay="300">Solicitar cita</a>
   </div>
 </header>
 
@@ -145,70 +170,70 @@ footer { background-color: var(--color-primario); color: var(--color-texto); tex
 <div class="container">
 
 <section id="sobre-mi">
-  <h2>Sobre mí</h2>
-  <p>Soy Inma, psicóloga especializada en acompañamiento emocional y terapias personalizadas. Mi enfoque se basa en la empatía, la escucha activa y el respeto por cada proceso individual.</p>
+  <h2 data-aos="fade-up">Sobre mí</h2>
+  <p data-aos="fade-right">Soy Inma, psicóloga especializada en acompañamiento emocional y terapias personalizadas.</p>
 </section>
 
 <section id="tratamientos">
-  <h2>Tratamientos</h2>
+  <h2 data-aos="fade-up">Tratamientos</h2>
   <div class="tratamientos">
-    <div class="item" onclick="abrirModal('modal-individual')">
-      <img src="iconos/terapia_individual.png" alt="Terapia Individual">
+    <div class="item" data-aos="fade-up" onclick="abrirModal('modal-individual')">
+      <img src="iconos/terapia_individual.png" class="icon" alt="Terapia Individual">
       <h3>Terapia Individual</h3>
     </div>
-    <div class="item" onclick="abrirModal('modal-pareja')">
-      <img src="iconos/terapia_pareja.png" alt="Terapia de Pareja">
+    <div class="item" data-aos="fade-up" data-aos-delay="100" onclick="abrirModal('modal-pareja')">
+      <img src="iconos/terapia_pareja.png" class="icon" alt="Terapia de Pareja">
       <h3>Terapia de Pareja</h3>
     </div>
-    <div class="item" onclick="abrirModal('modal-familiar')">
-      <img src="iconos/asesoramiento_familiar.png" alt="Asesoramiento Familiar">
+    <div class="item" data-aos="fade-up" data-aos-delay="200" onclick="abrirModal('modal-familiar')">
+      <img src="iconos/asesoramiento_familiar.png" class="icon" alt="Asesoramiento Familiar">
       <h3>Asesoramiento Familiar</h3>
     </div>
-    <div class="item" onclick="abrirModal('modal-mindfulness')">
-      <img src="iconos/mindfulness.png" alt="Mindfulness">
+    <div class="item" data-aos="fade-up" data-aos-delay="300" onclick="abrirModal('modal-mindfulness')">
+      <img src="iconos/mindfulness.png" class="icon" alt="Mindfulness">
       <h3>Mindfulness</h3>
     </div>
   </div>
 </section>
 
 <section id="talleres">
-  <h2>Talleres</h2>
+  <h2 data-aos="fade-up">Talleres</h2>
   <div class="talleres">
-    <div class="item" onclick="abrirModal('modal-timidez')">
-      <img src="imagenes/timidez1.png" alt="Supera la Timidez">
+    <div class="item" data-aos="fade-up" onclick="abrirModal('modal-timidez')">
+      <img src="imagenes/timidez1.png" class="icon" alt="Supera la Timidez">
       <h3>Supera la Timidez</h3>
     </div>
-    <div class="item" onclick="abrirModal('modal-pareja-taller')">
-      <img src="imagenes/pareja1.png" alt="Mejora tu relación de pareja">
+    <div class="item" data-aos="fade-up" data-aos-delay="100" onclick="abrirModal('modal-pareja-taller')">
+      <img src="imagenes/pareja1.png" class="icon" alt="Mejora tu relación de pareja">
       <h3>Mejora tu relación de pareja</h3>
     </div>
-    <div class="item" onclick="abrirModal('modal-ruptura')">
-      <img src="imagenes/ruptura1.png" alt="Supera una ruptura">
+    <div class="item" data-aos="fade-up" data-aos-delay="200" onclick="abrirModal('modal-ruptura')">
+      <img src="imagenes/ruptura1.png" class="icon" alt="Supera una ruptura">
       <h3>Supera una ruptura</h3>
     </div>
-    <div class="item" onclick="abrirModal('modal-ansiedad')">
-      <img src="imagenes/ansiedad1.png" alt="Aprende a gestionar la ansiedad">
+    <div class="item" data-aos="fade-up" data-aos-delay="300" onclick="abrirModal('modal-ansiedad')">
+      <img src="imagenes/ansiedad1.png" class="icon" alt="Aprende a gestionar la ansiedad">
       <h3>Aprende a gestionar la ansiedad</h3>
     </div>
-    <div class="item" onclick="abrirModal('modal-rallo')">
-      <img src="imagenes/rallo1.png" alt="Pienso, luego me rallo">
+    <div class="item" data-aos="fade-up" data-aos-delay="400" onclick="abrirModal('modal-rallo')">
+      <img src="imagenes/rallo1.png" class="icon" alt="Pienso, luego me rallo">
       <h3>Pienso, luego me rallo</h3>
     </div>
-    <div class="item" onclick="abrirModal('modal-valorat')">
-      <img src="imagenes/valorat1.png" alt="Valora-T">
+    <div class="item" data-aos="fade-up" data-aos-delay="500" onclick="abrirModal('modal-valorat')">
+      <img src="imagenes/valorat1.png" class="icon" alt="Valora-T">
       <h3>Valora-T</h3>
     </div>
   </div>
 </section>
 
 <section id="contacto">
-  <h2>Contacto</h2>
-  <p>Email: <a href="mailto:inmapsico@gmail.com">inmapsico@gmail.com</a></p>
-  <p>Teléfono: <a href="tel:666999000">666999000</a></p>
-  <form action="https://formspree.io/f/your-email" method="POST">
-    <input type="text" name="nombre" placeholder="Tu nombre" required><br>
-    <input type="email" name="email" placeholder="Tu correo electrónico" required><br>
-    <textarea name="mensaje" placeholder="Tu mensaje" required></textarea><br>
+  <h2 data-aos="fade-up">Contacto</h2>
+  <p data-aos="fade-right">Email: <a href="mailto:inmapsico@gmail.com">inmapsico@gmail.com</a></p>
+  <p data-aos="fade-right" data-aos-delay="100">Teléfono: <a href="tel:666999000">666999000</a></p>
+  <form action="https://formspree.io/f/your-email" method="POST" data-aos="fade-up" data-aos-delay="200">
+    <input type="text" name="nombre" placeholder="Tu nombre" required>
+    <input type="email" name="email" placeholder="Tu correo electrónico" required>
+    <textarea name="mensaje" placeholder="Tu mensaje" required rows="5"></textarea>
     <button type="submit">Enviar</button>
   </form>
 </section>
@@ -219,98 +244,105 @@ footer { background-color: var(--color-primario); color: var(--color-texto); tex
   <p>&copy; 2025 Inma Psicóloga. Todos los derechos reservados.</p>
 </footer>
 
-<!-- Modales -->
-<div id="modal-individual" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-individual')">&times;</span>
+<!-- ===== MODALES ===== -->
+<div id="modal-individual" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-individual')">&times;</span>
     <h2>Terapia Individual</h2>
-    <p>Sesiones personalizadas para acompañarte en tu desarrollo emocional y personal.</p>
+    <p>Sesiones personalizadas para trabajar tu desarrollo personal y emocional.</p>
   </div>
 </div>
-<div id="modal-pareja" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-pareja')">&times;</span>
+<div id="modal-pareja" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-pareja')">&times;</span>
     <h2>Terapia de Pareja</h2>
-    <p>Mejora la comunicación y fortalece la relación, abordando conflictos y promoviendo comprensión mutua.</p>
+    <p>Apoyo profesional para mejorar la comunicación y fortalecer la relación.</p>
   </div>
 </div>
-<div id="modal-familiar" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-familiar')">&times;</span>
+<div id="modal-familiar" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-familiar')">&times;</span>
     <h2>Asesoramiento Familiar</h2>
-    <p>Resolución de conflictos internos y mejora de relaciones familiares.</p>
+    <p>Herramientas para resolver conflictos y mejorar la convivencia familiar.</p>
   </div>
 </div>
-<div id="modal-mindfulness" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-mindfulness')">&times;</span>
+<div id="modal-mindfulness" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-mindfulness')">&times;</span>
     <h2>Mindfulness</h2>
-    <p>Técnicas para reducir estrés, mejorar concentración y fomentar equilibrio emocional.</p>
+    <p>Técnicas de atención plena para reducir el estrés y mejorar tu bienestar.</p>
   </div>
 </div>
 
-<!-- Modales de talleres -->
-<div id="modal-timidez" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-timidez')">&times;</span>
+<div id="modal-timidez" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-timidez')">&times;</span>
     <h2>Supera la Timidez</h2>
-    <img src="imagenes/timidez.png" alt="Supera la Timidez" style="width:100%; margin-bottom:1rem;">
-    <p>Aprende herramientas para ganar confianza y expresarte con seguridad en cualquier situación.</p>
+    <img src="imagenes/timidez.png" alt="Supera la Timidez">
+    <p>Aprende a ganar confianza y expresarte con seguridad.</p>
   </div>
 </div>
-<div id="modal-pareja-taller" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-pareja-taller')">&times;</span>
+<div id="modal-pareja-taller" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-pareja-taller')">&times;</span>
     <h2>Mejora tu relación de pareja</h2>
-    <img src="imagenes/pareja.png" alt="Mejora tu relación de pareja" style="width:100%; margin-bottom:1rem;">
-    <p>Estrategias para mejorar la comunicación y fortalecer la relación con tu pareja.</p>
+    <img src="imagenes/pareja.png" alt="Mejora tu relación de pareja">
+    <p>Descubre cómo mejorar la comunicación y resolver conflictos.</p>
   </div>
 </div>
-<div id="modal-ruptura" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-ruptura')">&times;</span>
+<div id="modal-ruptura" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-ruptura')">&times;</span>
     <h2>Supera una ruptura</h2>
-    <img src="imagenes/ruptura.png" alt="Supera una ruptura" style="width:100%; margin-bottom:1rem;">
-    <p>Aprende a gestionar emociones y reconstruir tu bienestar tras una ruptura amorosa.</p>
+    <img src="imagenes/ruptura.png" alt="Supera una ruptura">
+    <p>Recupera tu equilibrio emocional tras una ruptura sentimental.</p>
   </div>
 </div>
-<div id="modal-ansiedad" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-ansiedad')">&times;</span>
+<div id="modal-ansiedad" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-ansiedad')">&times;</span>
     <h2>Aprende a gestionar la ansiedad</h2>
-    <img src="imagenes/ansiedad.png" alt="Aprende a gestionar la ansiedad" style="width:100%; margin-bottom:1rem;">
-    <p>Técnicas prácticas para controlar ansiedad, estrés y mejorar tu calidad de vida.</p>
+    <img src="imagenes/ansiedad.png" alt="Aprende a gestionar la ansiedad">
+    <p>Técnicas prácticas para reducir la ansiedad y recuperar el control.</p>
   </div>
 </div>
-<div id="modal-rallo" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-rallo')">&times;</span>
+<div id="modal-rallo" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-rallo')">&times;</span>
     <h2>Pienso, luego me rallo</h2>
-    <img src="imagenes/rallo.png" alt="Pienso, luego me rallo" style="width:100%; margin-bottom:1rem;">
-    <p>Comprende y maneja los pensamientos obsesivos que afectan tu bienestar.</p>
+    <img src="imagenes/rallo.png" alt="Pienso, luego me rallo">
+    <p>Aprende a identificar pensamientos automáticos y rumiaciones.</p>
   </div>
 </div>
-<div id="modal-valorat" class="modal">
-  <div class="modal-contenido"><span class="cerrar" onclick="cerrarModal('modal-valorat')">&times;</span>
+<div id="modal-valorat" class="modal" aria-hidden="true">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modal-valorat')">&times;</span>
     <h2>Valora-T</h2>
-    <img src="imagenes/valorat.png" alt="Valora-T" style="width:100%; margin-bottom:1rem;">
-    <p>Ejercicios y técnicas para mejorar tu autoestima y autovaloración.</p>
+    <img src="imagenes/valorat.png" alt="Valora-T">
+    <p>Refuerza tu autoestima y aprende a valorarte.</p>
   </div>
 </div>
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-function abrirModal(id) {
-  document.getElementById(id).style.display = "block";
+AOS.init({
+  duration:800,
+  offset:120,
+  once:false,
+  mirror:true
+});
+function abrirModal(id){
+  const m=document.getElementById(id);
+  if(m){m.setAttribute('aria-hidden','false');m.style.display='flex';document.body.style.overflow='hidden';}
 }
-function cerrarModal(id) {
-  document.getElementById(id).style.display = "none";
+function cerrarModal(id){
+  const m=document.getElementById(id);
+  if(m){m.setAttribute('aria-hidden','true');m.style.display='none';document.body.style.overflow='';}
 }
-window.onclick = function(event) {
-  const modales = document.querySelectorAll('.modal');
-  modales.forEach(modal => {
-    if(event.target == modal) modal.style.display = "none";
-  });
-}
-
-// Animación fade-in de items al cargar
-window.addEventListener('DOMContentLoaded', () => {
-  const items = document.querySelectorAll('.item');
-  items.forEach((item, i) => {
-    setTimeout(() => { item.classList.add('show'); }, i*150);
-  });
+window.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){const open=document.querySelector('.modal[aria-hidden="false"]');if(open)cerrarModal(open.id);}
 });
 </script>
-
 </body>
 </html>
