@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Inma Psicóloga</title>
 
 <!-- Tipografías -->
@@ -20,143 +20,68 @@
   --color-boton: #f4a6b1;
   --color-gris-claro: #fdf5f7;
 }
+
+/* Global */
 *{box-sizing:border-box;margin:0;padding:0}
-body {
-  font-family:'Quicksand',sans-serif;
-  background:var(--color-fondo);
-  color:var(--color-texto);
-  line-height:1.6;
-  scroll-behavior:smooth;
-}
+body {font-family:'Quicksand',sans-serif;background:var(--color-fondo);color:var(--color-texto);line-height:1.6;scroll-behavior:smooth;}
 
 /* Header */
-header {
-  background:linear-gradient(rgba(248,200,216,0.5), rgba(248,200,216,0.5)),
-    url('https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg') center/cover no-repeat;
-  height:40vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:#fff;
-  padding:0 1rem;
-}
-header h1{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;margin-bottom:.6rem}
-header p{font-size:1.05rem;margin-bottom:1rem}
-header .boton{
-  background:var(--color-boton);
-  padding:.7rem 1.6rem;
-  border-radius:50px;
-  color:#fff;
-  text-decoration:none;
-}
-header .boton:hover{background:var(--color-acento)}
+header {position:relative;height:35vh;min-height:300px;overflow:hidden;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;}
+header::before {content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(248,200,216,0.6), rgba(248,200,216,0.2));z-index:1;}
+header img.bg-parallax {position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform 0.2s ease-out;}
+header .content {position:relative;z-index:2;max-width:800px;padding:0 1rem;}
+header h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;margin-bottom:.6rem;text-shadow:0 4px 12px rgba(0,0,0,0.4);}
+header p{font-size:1.2rem;margin-bottom:1rem;text-shadow:0 3px 8px rgba(0,0,0,0.3);}
+header .boton{background:var(--color-boton);padding:.7rem 1.6rem;border-radius:50px;color:#fff;text-decoration:none;font-weight:500;transition:all 0.3s ease, transform 0.3s ease;}
+header .boton:hover{background:var(--color-acento);transform: translateY(-3px) scale(1.05);}
 
-nav {
-  background:var(--color-primario);
-  padding:.8rem;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:50;
-}
-nav a{margin:0 .8rem;color:var(--color-texto);text-decoration:none;font-weight:500}
-nav a:hover{color:var(--color-acento)}
+/* Nav */
+nav {background:var(--color-primario);padding:.8rem;text-align:center;position:sticky;top:0;z-index:50;}
+nav a{margin:0 .8rem;color:var(--color-texto);text-decoration:none;font-weight:500;transition:color 0.3s ease, transform 0.3s ease;}
+nav a:hover{color:var(--color-acento);transform:scale(1.05);}
 
+/* Container */
 .container{max-width:1100px;margin:2rem auto;padding:0 1rem}
-section{margin-bottom:2rem;padding:1.8rem;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
-section h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1rem;text-align:center}
+
+/* Sections */
+section{margin-bottom:2rem;padding:1.8rem;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);}
+section h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1rem;text-align:center;}
 
 /* Grids */
-.tratamientos,.talleres {
-  display:grid;
-  gap:1rem;
-}
-.tratamientos { grid-template-columns: repeat(4,1fr); }
-.talleres { grid-template-columns: repeat(6,1fr); }
+.tratamientos,.talleres{display:grid;gap:1rem;justify-items:center;}
+.tratamientos{grid-template-columns:repeat(4,1fr);}
+.talleres{grid-template-columns:repeat(6,1fr);}
+@media(max-width:900px){.tratamientos{grid-template-columns:repeat(2,1fr);}.talleres{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.tratamientos,.talleres{grid-template-columns:1fr;}}
 
-.item {
-  background:var(--color-gris-claro);
-  border-radius:12px;
-  padding:1rem;
-  text-align:center;
-  cursor:pointer;
-  transition:.3s;
-}
-.item:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,.08); }
-.item img.icon { width:60px; height:60px; object-fit:contain; margin-bottom:.5rem }
+/* Items */
+.item {background:var(--color-gris-claro);border-radius:12px;padding:1rem;text-align:center;cursor:pointer;transition: transform 0.3s ease, box-shadow 0.4s ease, filter 0.3s ease;width:100%;max-width:220px;opacity:1;transform:translateY(0) scale(1);}
+.item:hover{transform:translateY(-10px) scale(1.08) rotate(-1deg);box-shadow:0 14px 28px rgba(244,166,177,0.3),0 0 30px rgba(244,166,177,0.2);filter:brightness(1.05);}
+.item img.icon{width:60px;height:60px;object-fit:contain;margin-bottom:.5rem;animation:floatIcon 3s ease-in-out infinite alternate;transition:transform 0.3s ease,filter 0.3s ease;}
+.item img.icon:hover{transform:scale(1.25) rotate(-5deg);filter:drop-shadow(0 0 6px rgba(244,166,177,0.7));}
+@keyframes floatIcon{0%{transform:translateY(0);}50%{transform:translateY(-6px);}100%{transform:translateY(0);}}
 
-/* Modal */
-.modal {
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,.5);
-  z-index:100;
-  align-items:center;
-  justify-content:center;
-  padding:1rem;
-}
-.modal[aria-hidden="false"] { display:flex }
-.modal-contenido {
-  background:#fff;
-  border-radius:10px;
-  padding:1.6rem;
-  max-width:600px;
-  width:100%;
-  position:relative;
-}
-.modal-contenido img {
-  width:100%; height:auto;
-  border-radius:8px;
-  margin-bottom:1rem;
-}
-.cerrar {
-  position:absolute;
-  right:12px; top:8px;
-  font-size:1.6rem;
-  cursor:pointer;
-}
+.boton{display:inline-block;transition: transform 0.3s ease, box-shadow 0.4s ease, filter 0.3s ease;}
+.boton:hover{transform:scale(1.1) rotate(-1deg);box-shadow:0 6px 18px rgba(244,166,177,0.6),0 0 20px rgba(255,182,193,0.4);}
 
-/* Contacto */
-form input, form textarea {
-  width:100%; padding:.8rem; margin-bottom:.9rem;
-  border:1px solid #d1d1d1; border-radius:8px;
-}
-form button {
-  background:var(--color-boton); color:#fff;
-  padding:.75rem 1.25rem;
-  border:none; border-radius:50px;
-  cursor:pointer;
-}
-form button:hover{background:var(--color-acento)}
-
-footer {
-  background:var(--color-primario);
-  text-align:center;
-  padding:1rem;
-  margin-top:1rem;
-  color:var(--color-texto);
-}
-
-/* Responsive */
-@media(max-width:900px){
-  .tratamientos{grid-template-columns:repeat(2,1fr)}
-  .talleres{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:600px){
-  .tratamientos,.talleres{grid-template-columns:1fr}
-}
+/* Modales */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center;padding:1rem;opacity:0;transition:opacity 0.3s ease;}
+.modal[aria-hidden="false"]{display:flex;opacity:1;}
+.modal-contenido{background:#fff;border-radius:10px;padding:1.6rem;max-width:600px;width:100%;position:relative;transform:scale(0.95);transition:transform 0.3s ease;}
+.modal[aria-hidden="false"] .modal-contenido{transform:scale(1);}
+.modal-contenido img{width:100%;height:auto;border-radius:8px;margin-bottom:1rem;}
+.cerrar{position:absolute;right:12px;top:8px;font-size:1.6rem;cursor:pointer;transition:color 0.2s ease;}
+.cerrar:hover{color:var(--color-acento);}
 </style>
 </head>
 <body>
 
-<header data-aos="fade-down">
-  <div>
-    <h1 data-aos="fade-up">Inma Psicóloga</h1>
-    <p data-aos="fade-up" data-aos-delay="150">Tu bienestar emocional es nuestra prioridad</p>
-    <a href="#contacto" class="boton" data-aos="fade-up" data-aos-delay="300">Solicitar cita</a>
+<header>
+  <img class="bg-parallax" src="https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg" alt="Cabecera">
+  <div class="content">
+    <h1>Inma Psicóloga</h1>
+    <p>Tu bienestar emocional es nuestra prioridad</p>
+    <a href="#contacto" class="boton">Solicitar cita</a>
   </div>
 </header>
 
@@ -169,184 +94,92 @@ footer {
 
 <div class="container">
 
-<section id="sobre-mi">
-  <h2 data-aos="fade-up">Sobre mí</h2>
-  <p data-aos="fade-right">Soy Inma, psicóloga especializada en acompañamiento emocional y terapias personalizadas.</p>
+<section id="sobre-mi" data-aos="fade-up">
+  <h2>Sobre mí</h2>
+  <p>Soy Inma, psicóloga especializada en acompañamiento emocional y terapias personalizadas.</p>
 </section>
 
-<section id="tratamientos">
-  <h2 data-aos="fade-up">Tratamientos</h2>
+<section id="tratamientos" data-aos="fade-up">
+  <h2>Tratamientos</h2>
   <div class="tratamientos">
-    <div class="item" data-aos="fade-up" onclick="abrirModal('modal-individual')">
-      <img src="iconos/terapia_individual.png" class="icon" alt="Terapia Individual">
-      <h3>Terapia Individual</h3>
-    </div>
-    <div class="item" data-aos="fade-up" data-aos-delay="100" onclick="abrirModal('modal-pareja')">
-      <img src="iconos/terapia_pareja.png" class="icon" alt="Terapia de Pareja">
-      <h3>Terapia de Pareja</h3>
-    </div>
-    <div class="item" data-aos="fade-up" data-aos-delay="200" onclick="abrirModal('modal-familiar')">
-      <img src="iconos/asesoramiento_familiar.png" class="icon" alt="Asesoramiento Familiar">
-      <h3>Asesoramiento Familiar</h3>
-    </div>
-    <div class="item" data-aos="fade-up" data-aos-delay="300" onclick="abrirModal('modal-mindfulness')">
-      <img src="iconos/mindfulness.png" class="icon" alt="Mindfulness">
-      <h3>Mindfulness</h3>
-    </div>
+    <div class="item" data-id="modal-individual"><img src="iconos/terapia_individual.png" class="icon" alt="Terapia Individual"><h3>Terapia Individual</h3></div>
+    <div class="item" data-id="modal-pareja"><img src="iconos/terapia_pareja.png" class="icon" alt="Terapia de Pareja"><h3>Terapia de Pareja</h3></div>
+    <div class="item" data-id="modal-familiar"><img src="iconos/asesoramiento_familiar.png" class="icon" alt="Asesoramiento Familiar"><h3>Asesoramiento Familiar</h3></div>
+    <div class="item" data-id="modal-mindfulness"><img src="iconos/mindfulness.png" class="icon" alt="Mindfulness"><h3>Mindfulness</h3></div>
   </div>
 </section>
 
-<section id="talleres">
-  <h2 data-aos="fade-up">Talleres</h2>
+<section id="talleres" data-aos="fade-up">
+  <h2>Talleres</h2>
   <div class="talleres">
-    <div class="item" data-aos="fade-up" onclick="abrirModal('modal-timidez')">
-      <img src="iconos/timidez1.png" class="icon" alt="Supera la Timidez">
-      <h3>Supera la Timidez</h3>
-    </div>
-    <div class="item" data-aos="fade-up" data-aos-delay="100" onclick="abrirModal('modal-pareja-taller')">
-      <img src="iconos/pareja1.png" class="icon" alt="Mejora tu relación de pareja">
-      <h3>Mejora tu relación de pareja</h3>
-    </div>
-    <div class="item" data-aos="fade-up" data-aos-delay="200" onclick="abrirModal('modal-ruptura')">
-      <img src="iconos/ruptura1.png" class="icon" alt="Supera una ruptura">
-      <h3>Supera una ruptura</h3>
-    </div>
-    <div class="item" data-aos="fade-up" data-aos-delay="300" onclick="abrirModal('modal-ansiedad')">
-      <img src="iconos/ansiedad1.png" class="icon" alt="Aprende a gestionar la ansiedad">
-      <h3>Aprende a gestionar la ansiedad</h3>
-    </div>
-    <div class="item" data-aos="fade-up" data-aos-delay="400" onclick="abrirModal('modal-rallo')">
-      <img src="iconos/rallo1.png" class="icon" alt="Pienso, luego me rallo">
-      <h3>Pienso, luego me rallo</h3>
-    </div>
-    <div class="item" data-aos="fade-up" data-aos-delay="500" onclick="abrirModal('modal-valorat')">
-      <img src="iconos/valorat1.png" class="icon" alt="Valora-T">
-      <h3>Valora-T</h3>
-    </div>
+    <div class="item" data-id="modal-timidez"><img src="iconos/timidez1.png" class="icon" alt="Supera la Timidez"><h3>Supera la Timidez</h3></div>
+    <div class="item" data-id="modal-pareja-taller"><img src="iconos/pareja1.png" class="icon" alt="Mejora tu relación de pareja"><h3>Mejora tu relación de pareja</h3></div>
+    <div class="item" data-id="modal-ruptura"><img src="iconos/ruptura1.png" class="icon" alt="Supera una ruptura"><h3>Supera una ruptura</h3></div>
+    <div class="item" data-id="modal-ansiedad"><img src="iconos/ansiedad1.png" class="icon" alt="Aprende a gestionar la ansiedad"><h3>Aprende a gestionar la ansiedad</h3></div>
+    <div class="item" data-id="modal-rallo"><img src="iconos/rallo1.png" class="icon" alt="Pienso, luego me rallo"><h3>Pienso, luego me rallo</h3></div>
+    <div class="item" data-id="modal-valorat"><img src="iconos/valorat1.png" class="icon" alt="Valora-T"><h3>Valora-T</h3></div>
   </div>
 </section>
 
-<section id="contacto">
-  <h2 data-aos="fade-up">Contacto</h2>
-  <p data-aos="fade-right">Email: <a href="mailto:inmapsico@gmail.com">inmapsico@gmail.com</a></p>
-  <p data-aos="fade-right" data-aos-delay="100">Teléfono: <a href="tel:666999000">666999000</a></p>
-  <form action="https://formspree.io/f/your-email" method="POST" data-aos="fade-up" data-aos-delay="200">
+<section id="contacto" data-aos="fade-up">
+  <h2>Contacto</h2>
+  <p>Email: <a href="mailto:inmapsico@gmail.com">inmapsico@gmail.com</a></p>
+  <p>Teléfono: <a href="tel:666999000">666999000</a></p>
+  <form action="https://formspree.io/f/your-email" method="POST">
     <input type="text" name="nombre" placeholder="Tu nombre" required>
     <input type="email" name="email" placeholder="Tu correo electrónico" required>
     <textarea name="mensaje" placeholder="Tu mensaje" required rows="5"></textarea>
     <button type="submit">Enviar</button>
   </form>
 </section>
-
 </div>
 
 <footer>
   <p>&copy; 2025 Inma Psicóloga. Todos los derechos reservados.</p>
 </footer>
 
-<!-- ===== MODALES ===== -->
-<div id="modal-individual" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-individual')">&times;</span>
-    <h2>Terapia Individual</h2>
-	<img src="imagenes/terapia_individual.png" alt="Terapia Individual">
-    <p>Sesiones personalizadas para trabajar tu desarrollo personal y emocional.</p>
-  </div>
-</div>
-<div id="modal-pareja" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-pareja')">&times;</span>
-    <h2>Terapia de Pareja</h2>
-	<img src="imagenes/terapia_pareja.png" alt="Terapia de Pareja">
-    <p>Apoyo profesional para mejorar la comunicación y fortalecer la relación.</p>
-  </div>
-</div>
-<div id="modal-familiar" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-familiar')">&times;</span>
-    <h2>Asesoramiento Familiar</h2>
-	<img src="imagenes/asesoramiento_familiar.png" alt="Asesoramiento Familiar">
-    <p>Herramientas para resolver conflictos y mejorar la convivencia familiar.</p>
-  </div>
-</div>
-<div id="modal-mindfulness" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-mindfulness')">&times;</span>
-    <h2>Mindfulness</h2>
-	<img src="imagenes/mindfulness.png" alt="Mindfulness">
-    <p>Técnicas de atención plena para reducir el estrés y mejorar tu bienestar.</p>
-  </div>
-</div>
+<!-- MODALES -->
+<div id="modal-individual" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Terapia Individual</h2><img src="imagenes/terapia_individual.png" alt="Terapia Individual"><p>Sesiones personalizadas para trabajar tu desarrollo personal y emocional.</p></div></div>
+<div id="modal-pareja" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Terapia de Pareja</h2><img src="imagenes/terapia_pareja.png" alt="Terapia de Pareja"><p>Apoyo profesional para mejorar la comunicación y fortalecer la relación.</p></div></div>
+<div id="modal-familiar" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Asesoramiento Familiar</h2><img src="imagenes/asesoramiento_familiar.png" alt="Asesoramiento Familiar"><p>Herramientas para resolver conflictos y mejorar la convivencia familiar.</p></div></div>
+<div id="modal-mindfulness" class="modal" aria-hidden="true"><div class="modal-contenido"><span class="cerrar">&times;</span><h2>Mindfulness</h2><img src="imagenes/mindfulness.png" alt="Mindfulness"><p>Técnicas de atención plena para reducir el estrés y mejorar tu bienestar.</p></div></div>
+<!-- Añade los demás modales aquí con los mismos IDs que en data-id -->
 
-<div id="modal-timidez" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-timidez')">&times;</span>
-    <h2>Supera la Timidez</h2>
-    <img src="imagenes/timidez.png" alt="Supera la Timidez">
-    <p>Aprende a ganar confianza y expresarte con seguridad.</p>
-  </div>
-</div>
-<div id="modal-pareja-taller" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-pareja-taller')">&times;</span>
-    <h2>Mejora tu relación de pareja</h2>
-    <img src="imagenes/pareja.png" alt="Mejora tu relación de pareja">
-    <p>Descubre cómo mejorar la comunicación y resolver conflictos.</p>
-  </div>
-</div>
-<div id="modal-ruptura" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-ruptura')">&times;</span>
-    <h2>Supera una ruptura</h2>
-    <img src="imagenes/ruptura.png" alt="Supera una ruptura">
-    <p>Recupera tu equilibrio emocional tras una ruptura sentimental.</p>
-  </div>
-</div>
-<div id="modal-ansiedad" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-ansiedad')">&times;</span>
-    <h2>Aprende a gestionar la ansiedad</h2>
-    <img src="imagenes/ansiedad.png" alt="Aprende a gestionar la ansiedad">
-    <p>Técnicas prácticas para reducir la ansiedad y recuperar el control.</p>
-  </div>
-</div>
-<div id="modal-rallo" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-rallo')">&times;</span>
-    <h2>Pienso, luego me rallo</h2>
-    <img src="imagenes/rallo.png" alt="Pienso, luego me rallo">
-    <p>Aprende a identificar pensamientos automáticos y rumiaciones.</p>
-  </div>
-</div>
-<div id="modal-valorat" class="modal" aria-hidden="true">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal('modal-valorat')">&times;</span>
-    <h2>Valora-T</h2>
-    <img src="imagenes/valorat.png" alt="Valora-T">
-    <p>Refuerza tu autoestima y aprende a valorarte.</p>
-  </div>
-</div>
-
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-AOS.init({
-  duration:800,
-  offset:120,
-  once:false,
-  mirror:true
+AOS.init({duration:800, offset:120, once:false, mirror:true});
+
+// Pop-ups con delegación de eventos
+document.querySelectorAll('.item').forEach(item=>{
+  item.addEventListener('click',()=> {
+    const id = item.dataset.id;
+    const modal = document.getElementById(id);
+    if(modal){modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';}
+  });
 });
-function abrirModal(id){
-  const m=document.getElementById(id);
-  if(m){m.setAttribute('aria-hidden','false');m.style.display='flex';document.body.style.overflow='hidden';}
-}
-function cerrarModal(id){
-  const m=document.getElementById(id);
-  if(m){m.setAttribute('aria-hidden','true');m.style.display='none';document.body.style.overflow='';}
-}
+
+document.querySelectorAll('.cerrar').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const modal = btn.closest('.modal');
+    modal.setAttribute('aria-hidden','true'); 
+    document.body.style.overflow='';
+  });
+});
+
+// Cerrar con Escape
 window.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){const open=document.querySelector('.modal[aria-hidden="false"]');if(open)cerrarModal(open.id);}
+  if(e.key==='Escape'){
+    const open = document.querySelector('.modal[aria-hidden="false"]');
+    if(open){open.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  }
+});
+
+// Header parallax
+window.addEventListener('scroll', ()=>{
+  const bg = document.querySelector('header img.bg-parallax');
+  if(bg){bg.style.transform=`translateY(${window.scrollY*0.3}px)`;}
 });
 </script>
+
 </body>
 </html>
